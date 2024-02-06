@@ -21,4 +21,8 @@
     <ProjectReference Include="..\FstApp.DataAccess\FirstApp.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstAppWeb", "FirstApp\FirstAppWeb.csproj", "{B0D45B7A-A560-4333-942C-68CEFA0992A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApp.DataAccess", "FstApp.DataAccess\FirstApp.DataAccess.csproj", "{10AF19F3-5499-4447-B167-BD12356BD329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstApp.DataAccess", "FstApp.DataAccess\FirstApp.DataAccess.csproj", "{10AF19F3-5499-4447-B167-BD12356BD329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApp.Models", "FstApp.Models\FirstApp.Models.csproj", "{E89C5E72-B733-4098-8A6D-262B9DC9AAD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstApp.Models", "FstApp.Models\FirstApp.Models.csproj", "{E89C5E72-B733-4098-8A6D-262B9DC9AAD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstApp.Utility", "FstApp.Utility\FirstApp.Utility.csproj", "{E42A5A54-39F4-42F4-B220-1AAEEA108784}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstApp.Utility", "FstApp.Utility\FirstApp.Utility.csproj", "{E42A5A54-39F4-42F4-B220-1AAEEA108784}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

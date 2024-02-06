@@ -1,22 +1,24 @@
 ﻿using FirstApp.DataAccess.Data;
+using FirstApp.DataAccess.Repository.IRepository;
 using FirstApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
 
-namespace FirstApp.Controllers
+namespace FirstAppWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db) 
+        private readonly IUnitOfWork _unitofWork;
+        public CategoryController(IUnitOfWork unitofWork)
         {
-            _db = db;
+            _unitofWork = unitofWork;
         }
-    
+
         public IActionResult Index()
         {
-          List<Category> objCategoryList = _db.Categories.ToList();
-            
+            List<Category> objCategoryList = _unitofWork.Category.GetAll().ToList();
+
             return View(objCategoryList);
         }
 
@@ -34,24 +36,24 @@ namespace FirstApp.Controllers
 
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _unitofWork.Category.Add(obj);
+                _unitofWork.Save();
                 TempData["success"] = "Category Created Successfully";
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        public IActionResult Edit(int? id )
+        public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _unitofWork.Category.Get(u => u.Id == id);
             //Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
             //Category? categoryFromDb2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
-            if (categoryFromDb == null) 
+            if (categoryFromDb == null)
             {
                 return NotFound();
             }
@@ -59,12 +61,12 @@ namespace FirstApp.Controllers
         }
         [HttpPost]
         public IActionResult Edit(Category obj)
-        {          
+        {
 
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _unitofWork.Category.Update(obj);
+                _unitofWork.Save();
                 TempData["success"] = "Category Updated Successfully";
                 return RedirectToAction("Index");
             }
@@ -78,7 +80,7 @@ namespace FirstApp.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _unitofWork.Category.Get(u => u.Id == id);
 
             if (categoryFromDb == null)
             {
@@ -89,18 +91,18 @@ namespace FirstApp.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _db.Categories.Find(id);
-            if (obj == null) 
+            Category? obj = _unitofWork.Category.Get(u => u.Id == id);
+            if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _unitofWork.Category.Remove(obj);
+            _unitofWork.Save();
             TempData["success"] = "Category Deleted Successfully";
             return RedirectToAction("Index");
 
 
-         }
+        }
 
     }
 }

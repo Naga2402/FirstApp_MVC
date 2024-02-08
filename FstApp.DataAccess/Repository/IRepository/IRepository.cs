@@ -11,9 +11,9 @@ namespace FirstApp.DataAccess.Repository.IRepository
     public interface IRepository<T> where T : class
     {
         //T - Category 
-        IEnumerable<T> GetAll();
+        IEnumerable<T> GetAll(string? includeProperties = null);
 
-        T Get(Expression<Func<T, bool>> filter);
+        T Get(Expression<Func<T, bool>> filter, string? includeProperties = null);
 
         void Add(T entity);
 

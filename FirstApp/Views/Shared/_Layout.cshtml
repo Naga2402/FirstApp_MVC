@@ -27,10 +27,10 @@
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
                         </li>
                             @if (User.IsInRole(SD.Role_Admin))
-                            {
+                             { 
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,11 +43,20 @@
                                         <li class="nav-item">
                                             <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
+                                        </li>
                                         <li><hr class="dropdown-divider"></li>
 
                                     </ul>
                                 </li>
-                            }
+                              } 
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                    <i class="bi bi-cart"> </i>    &nbsp;
+                                </a>
+                                
+                            </li>
                         </ul>
                     <partial name="_LoginPartial" />
                 </div>

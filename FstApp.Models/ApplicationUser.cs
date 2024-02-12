@@ -22,7 +22,10 @@ namespace FirstApp.Models
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         [ValidateNever]
-        public Company Company { get; set; }    
+        public Company? Company { get; set; }
+
+        [NotMapped]
+        public string Role { get; set; }
 
 
     }

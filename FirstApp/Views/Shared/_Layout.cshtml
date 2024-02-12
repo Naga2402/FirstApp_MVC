@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,14 +13,26 @@
     <link rel="stylesheet" href="~/FirstAppWeb.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css" />
+
+   @*  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"> *@
+
+   @*  <script src="~/DataTables/Buttons-2.1.1/js/dataTables.buttons.js"></script>
+    <script src="~/DataTables/JSZip-2.5.0/jszip.js"></script>
+    <script src="~/DataTables/pdfmake-0.1.36/pdfmake.js"></script>
+    <script src="~/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="~/DataTables/Buttons-2.1.1/js/buttons.html5.js"></script>
+    <script src="~/DataTables/Buttons-2.1.1/js/buttons.print.js"></script> *@
 
  <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm  bg-body-tertiary border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">FirstApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/book.png" style="width:30px" />
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,7 +47,8 @@
                             <a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
                         </li>
                             @if (User.IsInRole(SD.Role_Admin))
-                             { 
+                             
+                            { 
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,16 +65,24 @@
                                             <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
                                         </li>
                                         <li><hr class="dropdown-divider"></li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Create User</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="dropdown-item" asp-area="Admin" asp-controller="User" asp-action="Index">Manage User </a>
+                                        </li>
 
                                     </ul>
                                 </li>
-                              } 
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                                    <i class="bi bi-cart"> </i>    &nbsp;
-                                </a>
+                            } 
+                                                         
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                       @await Component.InvokeAsync("ShoppingCart")
+                                    </a>
+                                </li>
                                 
-                            </li>
+                            
                         </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -78,11 +104,12 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
+    <script src="//cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+      
     <script src="https://cdn.tiny.cloud/1/8p3jzblx82o8zcgnzeoqkneulrkk8qocz59847ro4rtycri7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

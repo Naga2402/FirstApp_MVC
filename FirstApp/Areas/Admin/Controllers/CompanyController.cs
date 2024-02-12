@@ -10,7 +10,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace FirstAppWeb.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+   [Area("Admin")]
    [Authorize(Roles = SD.Role_Admin)]
 
     public class CompanyController : Controller

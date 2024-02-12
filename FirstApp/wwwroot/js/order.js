@@ -1,5 +1,5 @@
 var dataTable;
-
+$.noConflict();
 $(document).ready(function () {
     var url = window.location.search;
     if (url.includes("inprocess")) {

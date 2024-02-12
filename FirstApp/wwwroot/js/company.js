@@ -1,4 +1,6 @@
 var dataTable;
+
+$.noConflict();
 $(document).ready(function () {
     loadDataTable();
 

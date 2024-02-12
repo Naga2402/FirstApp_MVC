@@ -16,7 +16,11 @@ namespace FirstApp.DataAccess.Repository
         public ApplicationUserRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
-        }     
+        }
+        public void Update(ApplicationUser applicationUser)
+        {
+            _db.ApplicationUsers.Update(applicationUser);
+        }
     }
 }
 
